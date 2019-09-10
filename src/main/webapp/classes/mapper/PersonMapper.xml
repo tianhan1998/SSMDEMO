@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.PersonMapper">
+    <resultMap id="Person" type="entity.Person">
+        <id column="id" property="id"></id>
+        <result column="Name" property="Name"></result>
+        <result column="Birthday" property="Birthday"></result>
+    </resultMap>
+    <insert id="addPerson" parameterType="entity.Person">
+        insert into person(Name,Birthday) values(#{Name},#{Birthday});
+    </insert>
+    <delete id="deletePerson" parameterType="int">
+        delete from person where id=#{id};
+    </delete>
+    <update id="updatePerson" parameterType="entity.Person">
+        update person set Name=#{Name},Birthday=#{Birthday} where id=#{id};
+    </update>
+    <select id="findById" resultMap="Person" parameterType="int">
+        select * from person where id=#{id};
+    </select>
+    <select id="selectList" resultMap="Person">
+        select * from person;
+    </select>
+</mapper>
